@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BODET Wiki / CrowDev</title>
+  <link rel="stylesheet" href="/Projets/Bodet/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">CrowDev Wiki</div>
+    <nav>
+      <a href="/index.html">Accueil</a>
+      <a href="/Projets/index.html">Projets</a>
+      <a href="/Wiki/index.html">Wiki</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- conteneur principal flexible pour que le footer reste en bas -->
+  <div class="content-wrap">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Wiki de <span>Bodet</span></h1>
+      <p>Le bot de sonnerie parfait pour votre serveur Discord. Automatisez les sons, annonces et notifications facilement !</p>
+      <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1422980809739993170&permissions=3145728&integration_type=0&scope=bot" target="_blank" rel="noopener">Ajouter à Discord</a>
+    </section>
+
+    <!-- Section commandes -->
+    <section class="projects" aria-labelledby="commands-title">
+      <h2 id="commands-title" style="grid-column: 1 / -1; color: var(--text-light); margin-bottom: 8px;">📜 Commandes du bot Bodet</h2>
+
+      <!-- Command card template -->
+      <div class="project-card">
+        <h2>/setup</h2>
+        <p>Configure Bodet pour le serveur : définir salon vocal, fuseau horaire et permissions initiales.</p>
+        <pre><code class="cmd">/setup</code></pre>
+        <button class="btn copy-btn" data-cmd="/setup">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/play &lt;nom|url&gt;</h2>
+        <p>Joue immédiatement la sonnerie nommée ou l'URL fournie dans le salon vocal configuré.</p>
+        <pre><code class="cmd">/play sonnerie-matin</code></pre>
+        <button class="btn copy-btn" data-cmd="/play sonnerie-matin">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/test</h2>
+        <p>Test rapide : Bodet fait une sonnerie de test pour vérifier la configuration et le volume.</p>
+        <pre><code class="cmd">/test</code></pre>
+        <button class="btn copy-btn" data-cmd="/test">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/volume &lt;0-100&gt;</h2>
+        <p>Règle le volume des sonneries (en pourcentage).</p>
+        <pre><code class="cmd">/volume 70</code></pre>
+        <button class="btn copy-btn" data-cmd="/volume 70">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/schedule add &lt;HH:MM&gt; [--days Mon,Tue]</h2>
+        <p>Ajoute une sonnerie programmée. Sans option, la sonnerie est quotidienne.</p>
+        <pre><code class="cmd">/schedule add 08:00 --days Mon,Tue,Wed</code></pre>
+        <button class="btn copy-btn" data-cmd="/schedule add 08:00 --days Mon,Tue,Wed">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/schedule remove &lt;HH:MM&gt;</h2>
+        <p>Supprime une sonnerie programmée à l'heure indiquée.</p>
+        <pre><code class="cmd">/schedule remove 08:00</code></pre>
+        <button class="btn copy-btn" data-cmd="/schedule remove 08:00">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/schedule list</h2>
+        <p>Affiche la liste complète des sonneries programmées pour le serveur.</p>
+        <pre><code class="cmd">/schedule list</code></pre>
+        <button class="btn copy-btn" data-cmd="/schedule list">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/annonce &lt;message&gt; [--voice]</h2>
+        <p>Diffuse un message texte ou vocal aux membres (option --voice pour synthèse vocale si activée).</p>
+        <pre><code class="cmd">/annonce Fin des cours dans 5 minutes --voice</code></pre>
+        <button class="btn copy-btn" data-cmd="/annonce Fin des cours dans 5 minutes --voice">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/tz set &lt;zone&gt;</h2>
+        <p>Définit le fuseau horaire du serveur (ex : Europe/Paris). Important pour les horaires programmés.</p>
+        <pre><code class="cmd">/tz set Europe/Paris</code></pre>
+        <button class="btn copy-btn" data-cmd="/tz set Europe/Paris">Copier</button>
+      </div>
+
+      <div class="project-card">
+        <h2>/help</h2>
+        <p>Affiche le guide d'aide complet directement sur Discord (listes des commandes et exemples).</p>
+        <pre><code class="cmd">/help</code></pre>
+        <button class="btn copy-btn" data-cmd="/help">Copier</button>
+      </div>
+    </section>
+
+    <!-- Tutoriel simple -->
+    <section class="projects" style="grid-template-columns: 1fr; padding-top: 20px;">
+      <div class="project-card" style="text-align:left;">
+        <h2>📘 Tutoriel rapide</h2>
+        <ol>
+          <li>Invitez Bodet via le bouton <strong>Ajouter à Discord</strong>.</li>
+          <li>Dans un salon texte administrateur lancez <code>/setup</code> puis suivez la configuration.</li>
+          <li>Ajoutez des horaires : <code>/schedule add 08:00</code>.</li>
+          <li>Testez avec <code>/test</code> ou <code>/play nom_sonnerie</code>.</li>
+        </ol>
+        <p style="margin-top:8px; color:var(--text-muted); font-size:0.9rem;">Si tu veux, je peux aussi te générer la documentation Markdown ou une page imprimable pour ton wiki.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 CrowDev — Projet <strong>Bodet</strong>. Tous droits réservés.</p>
+  </footer>
+
+  <!-- petit script pour copier les commandes -->
+  <script>
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+      const cmd = btn.getAttribute('data-cmd') || '';
+      navigator.clipboard.writeText(cmd).then(() => {
+        const original = btn.innerText;
+        btn.innerText = 'Copié ✓';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerText = original;
+          btn.disabled = false;
+        }, 1500);
+      }).catch(() => {
+        alert('Impossible de copier — utilise Ctrl+C/Cmd+C sur la commande affichée.');
+      });
+    });
+  </script>
+</body>
+</html>

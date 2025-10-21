@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+  --bg-dark: #0E0E10;
+  --bg-light: #1C1F26;
+  --blue: #efaf00;
+  --blue-light: #ffcf4b;
+  --text-light: #E6E6E6;
+  --text-muted: #cfcfcf;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: "Nunito", sans-serif;
+  line-height: 1.5;
+  
+  /* 1. RÈGLE CLÉ : Configure le body comme conteneur Flex */
+  min-height: 100vh; /* Doit prendre au moins la hauteur de l'écran */
+  display: flex; /* Active Flexbox */
+  flex-direction: column; /* Organise les enfants verticalement (header, main, footer) */
+}
+
+/* 2. RÈGLE CLÉ : Donne l'espace restant au contenu principal */
+.content-wrap {
+    flex-grow: 1; /* Permet à ce conteneur de grandir et de prendre tout l'espace restant */
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: linear-gradient(90deg, var(--bg-dark), var(--bg-light));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.logo {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  margin: 0 20px;
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+nav a:hover {
+  color: var(--blue);
+}
+
+.btn {
+  background: var(--blue);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn2 {
+  background-color: #1b1f26;
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background var(--transition-speed), transform var(--transition-speed);
+}
+
+.btn:hover {
+  background: var(--blue-light);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  nav a {
+    margin: 5px 10px;
+  }
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, var(--bg-light), var(--bg-dark));
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.hero h1 span {
+  color: var(--blue);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 20px auto;
+  color: var(--text-muted);
+}
+
+.hero .btn {
+  margin-top: 25px;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 70px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Les styles .projects n'ont pas été modifiés, je les laisse pour le contexte */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 50px 60px;
+}
+
+.project-card {
+  background: var(--bg-light);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  text-align: center;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed), opacity var(--transition-speed);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.project-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.project-card h2 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.project-card .btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 30px 20px;
+    gap: 20px;
+  }
+}
+
+footer {
+  background: var(--bg-light);
+  color: var(--text-light);
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  /* Retire la marge auto car elle n'est plus nécessaire avec Flexbox sur le body */
+}
