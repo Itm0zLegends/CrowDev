@@ -17,20 +17,16 @@
     </nav>
   </header>
 
-  <!-- conteneur principal flexible pour que le footer reste en bas -->
   <div class="content-wrap">
-    <!-- Hero -->
     <section class="hero">
       <h1>Wiki de <span>Bodet</span></h1>
       <p>Le bot de sonnerie parfait pour votre serveur Discord. Automatisez les sons, annonces et notifications facilement !</p>
       <a class="btn" href="https://discord.com/oauth2/authorize?client_id=1422980809739993170&permissions=3145728&integration_type=0&scope=bot" target="_blank" rel="noopener">Ajouter à Discord</a>
     </section>
 
-    <!-- Section commandes -->
     <section class="projects" aria-labelledby="commands-title">
       <h2 id="commands-title" style="grid-column: 1 / -1; color: var(--text-light); margin-bottom: 8px;">📜 Commandes du bot Bodet</h2>
 
-      <!-- Command card template -->
       <div class="project-card">
         <h2>!join</h2>
         <p>Fait rejoindre Bodet dans ton salon vocal et joue immédiatement la sonnerie configurée.</p>
@@ -91,10 +87,9 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 CrowDev — Projet <strong>Bodet</strong>. Tous droits réservés.</p>
+    <p>&copy; 2025 CrowDev. Tous droits réservés.</p>
   </footer>
 
-  <!-- petit script pour copier les commandes -->
   <script>
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.copy-btn');
