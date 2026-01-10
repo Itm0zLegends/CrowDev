@@ -1,1 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoClean - Optimisation GNOME | CrowDev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --accent: #3b82f6;
+            --accent-light: #06b6d4;
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background animé */
+        .background-effect {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-project { width: 600px; height: 600px; background: var(--accent); top: -250px; right: -100px; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-40px, 40px); }
+        }
+
+        /* --- Header (Identique à l'index) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.6rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav { display: flex; gap: 1.8rem; }
+        nav a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover { color: #ffffff; }
+
+        /* --- Contenu Projet --- */
+        main {
+            padding: 180px 1.5rem 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-hero { text-align: center; margin-bottom: 5rem; }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .project-desc {
+            font-size: 1.25rem;
+            color: #a1a1aa;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Grille de caractéristiques */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 5rem 0;
+        }
+
+        .feat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
+
+        .feat-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .feat-card h3 { margin-bottom: 1rem; font-size: 1.4rem; color: #fff; }
+        .feat-card p { color: #a1a1aa; font-size: 1rem; }
+
+        /* Zone de téléchargement */
+        .download-zone {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 40px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .download-zone h2 { font-size: 2rem; margin-bottom: 1rem; }
+
+        .btn-download {
+            background: #ffffff;
+            color: #000;
+            padding: 1.2rem 3.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 1.5rem;
+            text-align: center;
+            color: #71717a;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 640px) {
+            .nav-container { gap: 1rem; padding: 0.5rem 1.2rem; }
+            main { padding-top: 130px; }
+            .download-zone { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-effect" aria-hidden="true">
+        <div class="orb orb-project"></div>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-text">CrowDEV</a>
+            <nav>
+                <a href="/index.html#accueil">Accueil</a>
+                <a href="/index.html#projets">Projets</a>
+                <a href="/index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="project-hero">
+            <span class="badge">Version 1.1.0 stable</span>
+            <h1>Auto<span style="background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Clean</span></h1>
+            <p class="project-desc">
+                L'outil de maintenance de référence pour l'environnement GNOME. Gardez votre système Linux propre, rapide et organisé en un seul clic.
+            </p>
+        </div>
+
+        <div class="features">
+            <article class="feat-card">
+                <h3>Nettoyage Profond</h3>
+                <p>Analyse et supprime intelligemment le cache des applications, les fichiers journaux obsolètes et les fichiers temporaires du système.</p>
+            </article>
+            <article class="feat-card">
+                <h3>Sécurité Native</h3>
+                <p>Conçu pour GNOME, AutoClean respecte les permissions de l'utilisateur et ne touche jamais aux fichiers critiques du système.</p>
+            </article>
+            <article class="feat-card">
+                <h3>Gain de Performance</h3>
+                <p>Libérez de l'espace disque précieux et réduisez la fragmentation des données pour un système plus réactif au quotidien.</p>
+            </article>
+        </div>
+
+        <section class="download-zone">
+            <h2>Prêt à optimiser GNOME ?</h2>
+            <p>Découvrez la puissance d'un système Linux parfaitement entretenu.</p>
+            <a href="https://github.com/Itm0zLegends/AutoClean/releases/download/1.1.0/autoclean_1.1.0_amd64.deb" class="btn-download">
+                Télécharger pour Linux (.deb)
+            </a>
+            <p style="font-size: 0.9rem; color: #71717a;">
+                Compatible avec Ubuntu, Debian, Pop!_OS et Linux Mint.<br>
+                Requiert l'environnement de bureau GNOME.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 <strong>CrowDEV</strong> - Projet AutoClean</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Logiciel libre sous licence MIT.</p>
+    </footer>
+
+</body>
+</html>
