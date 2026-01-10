@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | CrowDev</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+    <style>
+        :root { 
+            --accent: #3b82f6; 
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --bg: #050505; 
+            --grid: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: #fff; 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grille futuriste */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black, transparent 90%);
+            z-index: -1;
+        }
+
+        /* Effets d'arrière-plan */
+        .background-effect { position: fixed; inset: 0; z-index: -2; }
+        .orb { 
+            position: absolute; 
+            border-radius: 50%; 
+            filter: blur(120px); 
+            opacity: 0.15; 
+            animation: float 18s infinite ease-in-out; 
+        }
+        .orb1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
+        .orb2 { width: 400px; height: 400px; background: #6366f1; bottom: -150px; left: -50px; animation-delay: -5s; }
+
+        .container { 
+            text-align: center; 
+            padding: 3rem; 
+            z-index: 10;
+        }
+
+        /* Effet Glitch/Néon sur le 404 */
+        .error-code {
+            font-size: clamp(8rem, 25vw, 14rem);
+            font-weight: 800;
+            line-height: 0.8;
+            letter-spacing: -10px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background: linear-gradient(to bottom, #fff 30%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px var(--accent-glow));
+            animation: float-text 6s infinite ease-in-out;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+
+        p { 
+            color: #71717a; 
+            margin-bottom: 3rem; 
+            font-size: 1.1rem;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Bouton Retour stylisé */
+        .btn-home {
+            position: relative;
+            padding: 1rem 2.5rem;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-home:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Éléments de décor flottants */
+        .glitch-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            width: 100%;
+            opacity: 0.2;
+            animation: line-move 4s infinite linear;
+        }
+
+        @keyframes float-text {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes float { 
+            0%, 100% { transform: translate(0,0); } 
+            50% { transform: translate(-50px, 30px); } 
+        }
+
+        @keyframes line-move {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+
+        @media (max-width: 640px) {
+            .error-code { font-size: 8rem; letter-spacing: -5px; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch-line"></div>
+    
+    <div class="background-effect">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+    </div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>Position perdue.</h1>
+        <p>Il semblerait que cette destination n'ait jamais été inventée, ou qu'elle ait été effacée du serveur.</p>
+        
+        <a href="index.html" class="btn-home">
+            <span>←</span> Retourner à la base
+        </a>
+    </div>
+
+    <script>
+        // Optionnel : Un petit effet de parallaxe sur les orbes au mouvement de la souris
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            document.querySelector('.orb1').style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+            document.querySelector('.orb2').style.transform = `translate(${x * -30}px, ${y * -30}px)`;
+        });
+    </script>
+</body>
+</html>

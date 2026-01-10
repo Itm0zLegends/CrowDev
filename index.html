@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrowDev - En développement</title>
+    <title>CrowDev - L'innovation par l'invention</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --accent: #3b82f6;
+            --accent-light: #06b6d4;
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,221 +24,281 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             color: #ffffff;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* Arrière-plan animé */
         .background-effect {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
+            filter: blur(100px);
+            opacity: 0.25;
             animation: float 20s infinite ease-in-out;
         }
 
-        .orb1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, #3b82f6, #60a5fa);
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .orb2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, #0ea5e9, #06b6d4);
-            bottom: -50px;
-            right: -50px;
-            animation-delay: 7s;
-        }
-
-        .orb3 {
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(45deg, #1d4ed8, #2563eb);
-            top: 50%;
-            right: 20%;
-            animation-delay: 14s;
-        }
+        .orb1 { width: 500px; height: 500px; background: var(--accent); top: -200px; left: -100px; }
+        .orb2 { width: 400px; height: 400px; background: var(--accent-light); bottom: -100px; right: -50px; animation-delay: -5s; }
+        .orb3 { width: 300px; height: 300px; background: #4f46e5; top: 30%; right: 15%; animation-delay: -10s; }
 
         @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 40px) scale(0.9); }
         }
 
-        .container {
-            text-align: center;
-            z-index: 1;
-            padding: 2rem;
-            max-width: 800px;
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem;
+            z-index: 1000;
         }
 
-        .logo {
-            font-size: 4rem;
+        .nav-container {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.6rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #0ea5e9 100%);
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            animation: glow 3s ease-in-out infinite;
+            text-decoration: none;
         }
 
-        @keyframes glow {
-            0%, 100% {
-                filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
-            }
-            50% {
-                filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.7));
-            }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        p {
-            font-size: 1.2rem;
+        nav { display: flex; gap: 1.8rem; }
+        nav a {
             color: #a1a1aa;
-            margin-bottom: 3rem;
-            line-height: 1.6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        nav a:hover { color: #ffffff; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1.5rem;
         }
 
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+        .hero h1 {
+            font-size: clamp(2.8rem, 9vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light), var(--accent));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 8s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .hero p {
+            max-width: 550px;
+            margin: 0 auto 3rem;
+            color: #a1a1aa;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        /* Boutons */
+        .btn {
+            padding: 1rem 2.5rem;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
         }
 
-        .pulse {
-            width: 12px;
-            height: 12px;
-            background: #10b981;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+        .btn-secondary {
+            background: var(--card-bg);
+            color: #fff;
+            border: 1px solid var(--border);
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.1);
-            }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .loading-bar {
-            width: 100%;
-            max-width: 400px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 0 auto;
+        /* Grid & Cartes */
+        section { padding: 120px 1.5rem; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-title { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
         }
 
-        .loading-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #06b6d4, #0ea5e9);
-            border-radius: 10px;
-            animation: loading 2s ease-in-out infinite;
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 3rem;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
-        @keyframes loading {
-            0% {
-                width: 0%;
-            }
-            50% {
-                width: 70%;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-        .social-links {
-            margin-top: 3rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
+        .card:hover {
+            transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
-        .social-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: drop-shadow(0 5px 15px rgba(59, 130, 246, 0.3));
+        }
+
+        .card h3 { 
+            margin-bottom: 1rem; 
+            font-size: 1.6rem; 
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card p { color: #a1a1aa; font-size: 1rem; }
+
+        .badge-mini {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 5px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: #71717a;
+        }
+
+        footer strong { color: #fff; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .nav-container { gap: 1rem; padding: 0.5rem 1.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="background-effect">
+
+    <div class="background-effect" aria-hidden="true">
         <div class="orb orb1"></div>
         <div class="orb orb2"></div>
         <div class="orb orb3"></div>
     </div>
 
-    <div class="container">
-        <div class="logo">CrowDev</div>
-        <h1>Quelque chose d'incroyable arrive</h1>
-        <p>Notre site est actuellement en développement. Nous travaillons dur pour vous offrir une expérience exceptionnelle.</p>
-        
-        <div class="status">
-            <div class="pulse"></div>
-            <span>En cours de développement..</span>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-text">CrowDEV</a>
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#projets">Projets</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="loading-bar">
-            <div class="loading-progress"></div>
+    <main>
+        <section class="hero" id="accueil">
+            <div class="hero-content">
+                <h1>L'innovation est notre <span class="gradient-text">invention</span></h1>
+                <p>Innover. Inventer. Propulser.</p>
+                <div class="cta-buttons">
+                    <a href="#projets" class="btn btn-secondary">Découvrir nos inventions</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projets">
+            <div class="section-header">
+                <h2 class="section-title">Nos <span class="gradient-text">Réalisations</span></h2>
+                <p>Des logiciels conçus pour la performance et l'élégance.</p>
+            </div>
+
+        <div class="grid">
+            <a href="projets/AutoClean/" class="card">
+                <span class="card-icon">🧹</span>
+                <div class="badge-mini">App Linux</div>
+                <h3>AutoClean</h3>
+                <p>Optimisation GNOME : Nettoyage intelligent du cache et des fichiers temporaires pour un système plus rapide et respectueux de votre vie privée.</p>
+            </a>
+
+            <a href="dev.html" class="card">
+                <span class="card-icon">🔔</span>
+                <div class="badge-mini">Bot Discord</div>
+                <h3>Echorys</h3>
+                <p>Gestion de sonneries RP : Automatisez l'ambiance sonore de vos serveurs de jeu de rôle (écoles, lycées) avec une précision à la seconde.</p>
+            </a>
         </div>
-    </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2026 <strong>CrowDEV</strong>, par CrowGROUP</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">Propulsé par l'imagination.</p>
+    </footer>
+
 </body>
 </html>
